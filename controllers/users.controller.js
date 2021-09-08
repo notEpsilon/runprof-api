@@ -1,6 +1,7 @@
 import User from '../models/User.model.js';
 import fireApp from '../firebase/firebaseUtils.js';
 import { getFirestore, collection, getDocs, doc, setDoc, deleteDoc, getDoc, updateDoc } from 'firebase/firestore';
+import { validateUserAsync } from '../validation/validationUtils.js';
 
 const firestore = getFirestore(fireApp);
 
@@ -8,6 +9,9 @@ const usersController = {
     addUser: async (req, res) => {
         const { email, number, name, gender, language, avatarUrl } = req.body;
         const user = new User(email, number, name, gender, language, avatarUrl);
+        if (!validateUserAsync(email, number, name, gender, language, avatarUrl)) {
+            return res.status(400).json({ message: 'Invalid User Info' });
+        }
         const userDocRef = doc(firestore, 'users', email);
         try {
             if ((await getDoc(userDocRef)).exists()) {

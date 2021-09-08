@@ -10,7 +10,6 @@ const userSchema = Joi.object({
 });
 
 const validateUserAsync = async user => {
-    // TODO: Check if user.email is in firestore (if true return false otherwise validate);
     try {
         const res = await userSchema.validateAsync(user);
     }
