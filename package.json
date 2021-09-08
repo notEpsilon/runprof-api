@@ -1,0 +1,20 @@
+{
+  "name": "runprof_project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node index.js"
+  },
+  "author": "Ibrahim Amin",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "firebase": "^9.0.1",
+    "joi": "^17.4.2"
+  },
+  "devDependencies": {
+    "dotenv": "^10.0.0"
+  }
+}
